@@ -434,5 +434,9 @@ https://modit.store/collections/gtav-maps-mlo-shell/products/pawn-and-jewelry-ml
 
 https://www.fivem-store.com/product/legion-square-with-underground-garage-mlo/
 
+I'd Like to also point out that I am not to be recognized as sole creator of this project.
+I am still learning and got tons of help from a great team of guys!
+Big thanks to anyone that helped me if you want any sort of individual recognition say the word!
+
 kamui_kody#9175
 
