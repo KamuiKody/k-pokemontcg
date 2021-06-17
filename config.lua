@@ -67,10 +67,6 @@ badge = {
     },
 }
 
-Config.CardshopBlipText = "Cardshop"
-Config.CardshopBlipColor = 5
-Config.CardshopBlipSprite = 272
-
 Config.EnableOpeningHours = true
 Config.OpenHour = 9 
 Config.CloseHour = 18 
