@@ -246,6 +246,32 @@ elseif QBCore.Shared.SplitStr(fromInventory, "-")[1] == "pokeBox" then
 			if Stashes[invId] ~= nil then 
 				Stashes[invId].isOpen = false
 			end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## for shared.lua ##
 
 	["pokebox"]					 = {["name"] = "pokebox",					["label"] = "Pokemon TCG Box",				["weight"] = 500,		["type"] = "item",		["image"] = "pokeBox.png",			["unique"] = true,	["useable"] = true,	["shouldClose"] = true,		["combinable"] = nil,	["description"] = "Pokemon TCG Storage Box"},
@@ -316,7 +342,7 @@ elseif QBCore.Shared.SplitStr(fromInventory, "-")[1] == "pokeBox" then
 	["kabuto"] 					 = {["name"] = "kabuto", 					["label"] = "kabuto", 					["weight"] = 0, 		["type"] = "item", 		["image"] = "kabuto.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,	["combinable"] = nil,   ["description"] = ""},
 	["kabutops"] 			 		 = {["name"] = "kabutops", 				 	["label"] = "kabutops", 				["weight"] = 0, 		["type"] = "item", 		["image"] = "kabutops.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,	["combinable"] = nil,   ["description"] = "4/6 for Boulder Badge"},
 	["kadabra"] 			 	 	 = {["name"] = "kadabra", 			  		["label"] = "kadabra", 					["weight"] = 0, 		["type"] = "item", 		["image"] = "kadabra.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,	["combinable"] = nil,   ["description"] = "4/6 for Marsh Badge"},
-	["kaknua"] 			 	 	 = {["name"] = "kaknua", 			  		["label"] = "kaknua", 					["weight"] = 0, 		["type"] = "item", 		["image"] = "kaknua.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   	["combinable"] = nil,   ["description"] = ""},
+	["kakuna"] 			 	 	 = {["name"] = "kakuna", 			  		["label"] = "kakuna", 					["weight"] = 0, 		["type"] = "item", 		["image"] = "kakuna.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   	["combinable"] = nil,   ["description"] = ""},
 	["kangaskhan"] 			 	 	 = {["name"] = "kangaskhan", 			  		["label"] = "kangaskhan", 				["weight"] = 0, 		["type"] = "item", 		["image"] = "kangaskhan.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   	["combinable"] = nil,   ["description"] = ""},
 	["kingler"] 			 	 	 = {["name"] = "kingler", 			  		["label"] = "kingler", 					["weight"] = 0, 		["type"] = "item", 		["image"] = "kingler.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,   	["combinable"] = nil,   ["description"] = ""},
 	["koffing"] 			 	 	 = {["name"] = "koffing", 			  		["label"] = "koffing", 					["weight"] = 0, 		["type"] = "item", 		["image"] = "koffing.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,    	["combinable"] = nil,   ["description"] = "1/6 for Soul Badge"},
