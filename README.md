@@ -465,5 +465,5 @@ I'd Like to also point out that I am not to be recognized as sole creator of thi
 I am still learning and got tons of help from a great team of guys!
 Big thanks to anyone that helped me if you want any sort of individual recognition say the word!
 
-kamui_kody#9175
+kamui_kody for support on script join https://discord.gg/3j9b439TeY
 
