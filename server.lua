@@ -31,9 +31,9 @@ QBCore.Functions.CreateCallback("Cards:server:Menu",function(source,cb)
     end
 end)
 
-RegisterCommand('pokemon', function(source)
+--[[RegisterCommand('pokemon', function(source)
     TriggerClientEvent("Cards:client:openMenu")
-end)
+end)]]
 
 QBCore.Functions.CreateUseableItem("boosterpack", function(source, item)
     local Player = QBCore.Functions.GetPlayer(source)    
