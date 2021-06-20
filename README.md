@@ -248,32 +248,9 @@ elseif QBCore.Shared.SplitStr(fromInventory, "-")[1] == "pokeBox" then
 			end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
 ## for shared.lua ##
-
+```lua
 ["boosterbox"] 					 = {["name"] = "boosterbox",		  	  		["label"] = "Boosterbox", 				["weight"] = 200, 		["type"] = "item", 		["image"] = "boosterBox.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,	   ["combinable"] = nil,   ["description"] = "Box Of Card Packs"},
 ["boosterpack"] 				 = {["name"] = "boosterpack", 			  	  	["label"] = "Boosterpack", 				["weight"] = 0, 		["type"] = "item", 		["image"] = "boosterPack.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,   ["combinable"] = nil,   ["description"] = "Pack of Cards"},
 ["abra"] 						 = {["name"] = "abra", 			  			  	["label"] = "Abra", 					["weight"] = 0, 		["type"] = "item", 		["image"] = "abra.png", 				["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,	   ["combinable"] = nil,   ["description"] = "3/6 for Marsh Badge"},
