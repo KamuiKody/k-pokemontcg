@@ -1,9 +1,5 @@
 Config = {}
 
-Config.EnableOpeningHours = true
-Config.OpenHour = 9 
-Config.CloseHour = 18 
-
 Config.CardshopLocation =  {
 	['Cardshop'] = {
 		location = vector3(174.08, -1321.79, 29.36),
@@ -66,10 +62,6 @@ badge = {
         location = vector3(200.5, -873.09, 30.91),
     },
 }
-
-Config.EnableOpeningHours = true
-Config.OpenHour = 9 
-Config.CloseHour = 18 
 
 Config.CardshopItems = {
 	['boulderbadge']		 = 1000,
