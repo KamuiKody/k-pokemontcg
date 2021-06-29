@@ -436,7 +436,7 @@ elseif QBCore.Shared.SplitStr(fromInventory, "-")[1] == "pokeBox" then
 
 https://modit.store/collections/gtav-maps-mlo-shell/products/pawn-and-jewelry-mlo-interior?variant=38162504024247#
 
-https://www.fivem-store.com/product/legion-square-with-underground-garage-mlo/
+https://www.youtube.com/watch?v=KSfuP583gV8&feature=youtu.be
 
 I'd Like to also point out that I am not to be recognized as sole creator of this project.
 I am still learning and got tons of help from a great team of guys!
