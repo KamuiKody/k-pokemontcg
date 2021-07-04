@@ -89,35 +89,47 @@ end)
 
 RegisterServerEvent("Cards:server:badges")
 AddEventHandler("Cards:server:badges", function(type)
-    if badge[type] ~= nil then
         local total = 0
+        local canBadge = true
         local Player = QBCore.Functions.GetPlayer(source)
-        for i = 1, #badge[type].cards do
-            local card = Player.Functions.GetItemByName(badge[type].cards[i])
-            if card == nil then
-                TriggerClientEvent('QBCore:Notify', source, 'You dont have '..badge[type].cards[i]..'!')
-            else
-                if card.amount < 1 then
-                    TriggerClientEvent('QBCore:Notify', source, 'You dont have '..badge[type].cards[i]..'!')
-                else
-                    total = total + 1
+            for k, v in pairs(Config.Badge[type].cards) do 
+                if Player.Functions.GetItemByName(k) ~= nil then 
+                    if Player.Functions.GetItemByName(k).amount < v then 
+                       canBadge = false
+                      TriggerClientEvent('QBCore:Notify', source, 'Come back when you have all the items for the '..Config.Badge[type].label, 'error', 5000) 
+                    end
+                else 
+                    canBadge = false
+                    TriggerClientEvent('QBCore:Notify', source, 'Come back when you have all the items for the '..Config.Badge[type].label, 'error', 5000)
+                    break
+                          
                 end
             end
-        end
-        Citizen.Wait(1000)
-        if total == #badge[type].cards then
-            for i = 1, #badge[type].cards do
-                Player.Functions.RemoveItem(badge[type].cards[i], 1)
-                TriggerClientEvent("inventory:client:ItemBox", source, QBCore.Shared.Items[badge[type].cards[i]], "remove")
-            end
-            Player.Functions.AddItem(badge[type].reward, 1)
-            TriggerClientEvent("inventory:client:ItemBox", source, QBCore.Shared.Items[badge[type].reward], "add")
-            TriggerClientEvent('QBCore:Notify', source, 'You got a '..badge[type].label..'!')	
-        else
-            TriggerClientEvent('QBCore:Notify', source, 'Come back when you have all the items!')
-        end	
-    end
+
+                if canBadge then 
+                    TriggerClientEvent('QBCore:Notify', source, 'You got a '..Config.Badge[type].label..'!', 'success', 10000)
+                    for k, v in pairs(Config.Badge[type].cards) do
+                    Player.Functions.RemoveItem(k, v)
+
+                    end 
+                   Citizen.Wait(2000)
+                    Player.Functions.AddItem(type, 1)
+                    
+                end 
 end)
+
+if craft then
+    TriggerClientEvent('QBCore:Notify', source, Config.Recipes[item].Notify, 'success', 10000)
+    for k, v in pairs(Config.Recipes[item].Ingredients) do
+        xPlayer.Functions.RemoveItem(k, v)
+        --xPlayer.remove(k, v)
+        -- works here?!?!?
+    end
+    TriggerClientEvent('gl-burgershot:cookAnimation',source,Config.Recipes[item].Animation)
+    Wait(10000)
+    xPlayer.Functions.AddItem(item, 1)
+    
+end
 
 QBCore.Functions.CreateUseableItem("pokebox", function(source, item)
     local Player = QBCore.Functions.GetPlayer(source)
