@@ -6,60 +6,133 @@ Config.CardshopLocation =  {
 		},
 }
 
-badge = {
-    ["boulder"] = {
+Config.Badge = {
+    ["boulderbadge"] = {
+		Amount = 1,
 		label = "Boulder Badge",
-		cards = {"graveler", "rhyhorn", "omastar", "kabutops", "onix", "geodude"},
         reward = "boulderbadge",
         location = vector3(282.24, 6789.04, 15.7),
+		cards = {
+		["graveler"] = 1, 
+		["rhyhorn"] = 1,  
+		["omastar"] = 1,
+		["kabutops"] = 1,
+		["onix"] = 1, 
+		["geodude"] = 1,
+		},
     },
-    ["cascade"] = {
+    ["cascadebadge"] = {
+		Amount = 1,
 		label = "Cascade Badge",
-		cards = {"blastoise", "lapras", "starmie", "psyduck", "togepi"},
         reward = "cascadebadge",
         location = vector3(-1844.97, -1195.94, 19.20),
+		cards = {
+		["blastoise"] = 1, 
+		["lapras"] = 1, 
+		["starmie"] = 1, 
+		["psyduck"] = 1, 
+		["togepi"] = 1,
+		},
     },
-    ["thunder"] = {
+    ["thunderbadge"] = {
+		Amount = 1,
 		label = "Thunder Badge",
-		cards = {"zapdos", "pikachu", "jolteon", "electabuzz", "electrode", "magneton"},
         reward = "thunderbadge",
         location = vector3(2729.21, 1577.74, 66.54),
+		cards = {
+			["zapdos"] = 1, 
+			["pikachu"] = 1, 
+			["jolteon"] = 1, 
+			["electabuzz"] = 1, 
+			["electrode"] = 1, 
+			["magneton"] = 1,
+		},
     },
-    ["rainbow"] = {
+    ["rainbowbadge"] = {
+		Amount = 1,
 		label = "Rainbow Badge",
-		cards = {"victreebel", "tangela", "vileplume", "scyther", "bellsprout", "venusaur"},
         reward = "rainbowbadge",
-        location = vector3(-86.19, 834.38, 235.92)
+        location = vector3(-86.19, 834.38, 235.92),
+		cards = { 
+			["victreebel"] = 1, 
+			["tangela"] = 1, 
+			["vileplume"] = 1, 
+			["scyther"] = 1, 
+			["bellsprout"] = 1, 
+			["venusaur"] = 1,
+		},
     },
-    ["soul"] = {
+    ["soulbadge"] = {
+		Amount = 1,
 		label = "Soul Badge",
-		cards = {"koffing", "weezing", "snorlax", "venonat", "venomoth", "golbat"},
         reward = "soulbadge",
         location = vector3(-758.68, -1046.87, 13.6),
+		cards = { 
+			["koffing"] = 1, 
+			["weezing"] = 1, 
+			["snorlax"] = 1, 
+			["venonat"] = 1, 
+			["venomoth"] = 1, 
+			["golbat"] = 1,
+		},
     },
-    ["marsh"] = {
+    ["marshbadge"] = {
+		Amount = 1,
 		label = "Marsh Badge",
-		cards = {"alakazam", "mr_mime", "abra", "kadabra", "hypno", "jynx"},
         reward = "marshbadge",
-        location = vector3(387.26, 3585.02, 33.29)
+        location = vector3(387.26, 3585.02, 33.29),
+		cards = { 
+			["alakazam"] = 1, 
+			["mr_mime"] = 1, 
+			["abra"] = 1, 
+			["kadabra"] = 1, 
+			["hypno"] = 1, 
+			["jynx"] = 1,
+		},
     },
-    ["volcano"] = {
+    ["volcanobadge"] = {
+		Amount = 1,
 		label = "Volcano Badge",
-		cards = {"arcanine", "rapidash", "ninetails", "magmar", "charizard", "moltres"},
         reward = "volcanobadge",
         location = vector3(2944.06, 2747.0, 43.5),
+		cards = { 
+			["arcanine"] = 1, 
+			["rapidash"] = 1, 
+			["ninetails"] = 1, 
+			["magmar"] = 1, 
+			["charizard"] =1, 
+			["moltres"] = 1,
+		},
     },
-    ["earth"] = {
+    ["earthbadge"] = {
+		Amount = 1,
 		label = "Earth Badge",
-		cards = {"rhydon", "nidoking", "nidoqueen", "mewtwo", "dugtrio", "persian"},
         reward = "earthbadge",
         location = vector3(-2588.14, 1911.6, 167.6),
+		cards = { 
+			["rhydon"] = 1, 
+			["nidoking"] = 1, 
+			["nidoqueen"] = 1, 
+			["mewtwo"] = 1, 
+			["dugtrio"] = 1, 
+			["persian"] = 1,
+		},
     },
-    ["trophy"] = {
+    ["trophybadge"] = {
+		Amount = 1,
 		label = "League Trophy",
-		cards = {"boulderbadge", "cascadebadge", "thunderbadge", "rainbowbadge", "soulbadge", "marshbadge", "volcanohbadge", "earthbadge"},
         reward = "trophybadge",
         location = vector3(200.5, -873.09, 30.91),
+		cards = { 
+			["boulderbadge"] = 1, 
+			["cascadebadge"] = 1, 
+			["thunderbadge"] = 1, 
+			["rainbowbadge"] = 1, 
+			["soulbadge"] = 1, 
+			["marshbadge"] = 1, 
+			["volcanohbadge"] = 1, 
+			["earthbadge"] = 1,
+		},
     },
 }
 
