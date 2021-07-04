@@ -72,16 +72,6 @@ Citizen.CreateThread(function()
     end
 end)
 
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(10)
-        if QBCore == nil then
-            TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
-            Citizen.Wait(200)
-        end
-    end
-end)
-
 RegisterNetEvent("Cards:Client:OpenPack")
 AddEventHandler("Cards:Client:OpenPack", function(itemName)
     QBCore.Functions.Progressbar("drink_something", "opening pack..", 5000, false, true, {
