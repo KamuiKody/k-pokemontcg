@@ -1,8 +1,4 @@
-QBCore = nil
-
-TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
-
-local basicCards = {"bulbasaur", "ivysaur", "charmander", "charmeleon", "squirtle", "wartortle", "caterpie", "metapod", "butterfree", "weedle", "kaknua", "beedrill", "pidgey","pidgeotto", "pidgeot", "rattata", "raticate", "spearow", "fearow", "ekans", "arbok", "pikachu", "sandshrew", "sandslash", "nidoran", "nidorina", "nidoqueen", "nidorino", "clefairy","clefable", "vulpix", "ninetales", "zubat", "golbat", "oddish", "gloom", "vileplume", "paras", "parasect", "venonat", "venomoth", "diglett", "dugtrio", "meowth", "persian", "psyduck","golduck", "mankey", "primeape", "growlithe", "arcanine", "poliwag", "poliwhirl", "poliwrath", "abra","machop", "machoke", "bellsprout", "weepinbell", "victreebel", "tentacool","tentacruel", "geodude", "graveler", "golem", "ponyta", "rapidash", "slowpoke", "slowbro", "magnemite", "magneton", "farfetchd", "doduo", "dodrio", "seel", "dewgong", "grimer", "muk", "shellder", "cloyster","gastly", "haunter", "gengar", "drowzee", "hypno", "krabby", "kingler", "voltorb", "electrode", "exeggcute", "exeggutor", "cubone", "marowak", "lickitung", "koffing", "weezing", "rhyhorn", "rhydon", "chansey", "tangela", "horsea", "seadra", "goldeen", "seaking", "staryu", "mr mime",  "electabuzz", "magmar", "pinsir", "tauros", "magikarp"}
+local basicCards = {"bulbasaur", "ivysaur", "charmander", "charmeleon", "squirtle", "wartortle", "caterpie", "metapod", "butterfree", "weedle", "kakuna", "beedrill", "pidgey","pidgeotto", "pidgeot", "rattata", "raticate", "spearow", "fearow", "ekans", "arbok", "pikachu", "sandshrew", "sandslash", "nidoran", "nidorina", "nidoqueen", "nidorino", "clefairy","clefable", "vulpix", "ninetails", "zubat", "golbat", "oddish", "gloom", "vileplume", "paras", "parasect", "venonat", "venomoth", "diglett", "dugtrio", "meowth", "persian", "psyduck","golduck", "mankey", "primeape", "growlithe", "arcanine", "poliwag", "poliwhirl", "poliwrath", "abra","machop", "machoke", "bellsprout", "weepinbell", "victreebel", "tentacool","tentacruel", "geodude", "graveler", "golem", "ponyta", "rapidash", "slowpoke", "slowbro", "magnemite", "magneton", "farfetchd", "doduo", "dodrio", "seel", "dewgong", "grimer", "muk", "shellder", "cloyster","gastly", "haunter", "gengar", "drowzee", "hypno", "krabby", "kingler", "voltorb", "electrode", "exeggcute", "exeggutor", "cubone", "marowak", "lickitung", "koffing", "weezing", "rhyhorn", "rhydon", "chansey", "tangela", "horsea", "seadra", "goldeen", "seaking", "staryu", "mrmime",  "electabuzz", "magmar", "pinsir", "tauros", "magikarp"}
 local rareCards = {"lapras", "eevee", "togepi", "vaporeon", "jolteon", "flareon", "jigglypuff","wigglytuff", "kadabra","raichu", "nidoking",  "jynx", "kangaskhan", "gyarados","ditto","starmie", "onix", "machamp", "scyther", "hitmonlee", "hitmonchan", "venusaur" }
 local ultraCards = {"charizard", "blastoise","porygon", "omanyte", "omastar", "dragonite", "mewtwo", "mew", "snorlax", "articuno", "zapdos", "kabuto", "kabutops", "aerodactyl", "moltres", "dratini", "dragonair"}
 local vCards = {"blastoisev", "charizardv", "mewv", "pikachuv", "snorlaxv", "venusaurv"}
@@ -31,60 +27,76 @@ QBCore.Functions.CreateCallback("Cards:server:Menu",function(source,cb)
     end
 end)
 
---[[RegisterCommand('pokemon', function(source)
-    TriggerClientEvent("Cards:client:openMenu")
-end)]]
-
 QBCore.Functions.CreateUseableItem("boosterpack", function(source, item)
-    local Player = QBCore.Functions.GetPlayer(source)    
-        TriggerClientEvent("Cards:Client:OpenPack", source, item.name)
-            Citizen.Wait(4000)
+    local Player = QBCore.Functions.GetPlayer(source)  
+        TriggerClientEvent("Cards:Client:OpenPack", source)  
+        Citizen.Wait(4000)
         TriggerClientEvent('QBCore:Notify', source, 'You got 4 cards!')
 end)
 
-RegisterServerEvent('Cards:Server:rewarditem')
-AddEventHandler('Cards:Server:rewarditem', function(listKey)
+RegisterServerEvent('Cards:Server:RemoveItem')
+AddEventHandler('Cards:Server:RemoveItem', function()
+    local src = source
     local Player = QBCore.Functions.GetPlayer(source)
     local pack = Player.Functions.GetItemByName("boosterpack")
-	    if pack.amount == nil then
-		TriggerClientEvent('QBCore:Notify', source, 'You dont have a boosterpack!')
+
+    if pack.amount == nil then
+        TriggerClientEvent('QBCore:Notify', source, 'You dont have a boosterpack!')
     else
         Player.Functions.RemoveItem('boosterpack',1)
-        for i=1, 4 do
-        local randomChance = math.random(1, 1000)
-            if randomChance <= 5 then 
-                local card = rainbowCards[math.random(1,#rainbowCards)]
-                TriggerClientEvent("inventory:client:ItemBox", QBCore.Shared.Items[card], "add")
-                    Player.Functions.AddItem(card, 1)
-                    Citizen.Wait(500)
-		    elseif randomChance >= 6 and randomChance <= 19 then
-                local card = vmaxCards[math.random(1, #vmaxCards)]
-                TriggerClientEvent("inventory:client:ItemBox", QBCore.Shared.Items[card], "add")
-                    Player.Functions.AddItem(card, 1)
-                    Citizen.Wait(500)
-		    elseif randomChance >= 20 and randomChance <= 50 then
-                local card = vCards[math.random(1, #vCards)]
-                TriggerClientEvent("inventory:client:ItemBox", QBCore.Shared.Items[card], "add")
-                    Player.Functions.AddItem(card, 1)
-                    Citizen.Wait(500)
-		    elseif randomChance >= 51 and randomChance <= 100 then
-                local card = ultraCards[math.random(1, #ultraCards)]
-                TriggerClientEvent("inventory:client:ItemBox", QBCore.Shared.Items[card], "add")
-                    Player.Functions.AddItem(card, 1)
-                    Citizen.Wait(500)
-            elseif randomChance >= 101 and randomChance <= 399 then
-                local card = rareCards[math.random(1, #rareCards)]
-                TriggerClientEvent("inventory:client:ItemBox", QBCore.Shared.Items[card], "add")
-                    Player.Functions.AddItem(card, 1)
-                    Citizen.Wait(500)
-            else 
-                local card = basicCards[math.random(1, #basicCards)]
-                TriggerClientEvent("inventory:client:ItemBox", QBCore.Shared.Items[card], "add")
-                    Player.Functions.AddItem(card, 1)
-                    Citizen.Wait(500)
-			end
-        end
-    end   
+    end
+  
+end)
+
+CreateThread(function()
+    math.randomseed(os.time())
+end)
+
+RegisterServerEvent('Cards:Server:rewarditem')
+AddEventHandler('Cards:Server:rewarditem', function()
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(source)
+    local pack = Player.Functions.GetItemByName("boosterpack")
+    local card = ''
+
+    local randomChance = math.random(1, 1000)
+    print(randomChance)
+    if randomChance <= 5 then 
+        card = rainbowCards[math.random(1,#rainbowCards)]         
+	elseif randomChance >= 6 and randomChance <= 19 then
+        card = vmaxCards[math.random(1, #vmaxCards)]
+
+	elseif randomChance >= 20 and randomChance <= 50 then
+        card = vCards[math.random(1, #vCards)]
+
+	elseif randomChance >= 51 and randomChance <= 100 then
+        card = ultraCards[math.random(1, #ultraCards)]
+
+    elseif randomChance >= 101 and randomChance <= 399 then
+        card = rareCards[math.random(1, #rareCards)]
+    else 
+        card = basicCards[math.random(1, #basicCards)]
+	end
+
+    Citizen.Wait(10)
+    print(card)
+
+    if card ~= '' then        
+        TriggerClientEvent('Cards:Client:CardChoosed', src, card)
+    else
+        TriggerClientEvent('QBCore:Notify', source, 'There is a problem in cards!')
+    end 
+end)
+
+RegisterServerEvent('Cards:Server:GetPokemon')
+AddEventHandler('Cards:Server:GetPokemon', function(pokemon)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    if pokemon ~= nil then
+        TriggerClientEvent("inventory:client:ItemBox", QBCore.Shared.Items[pokemon], "add")
+        TriggerClientEvent('QBCore:Notify', source, "You got '".. pokemon.. "'")
+        Player.Functions.AddItem(pokemon, 1)
+    end  
 end)
 
 RegisterServerEvent("Cards:server:badges")
@@ -101,11 +113,9 @@ AddEventHandler("Cards:server:badges", function(type)
                 else 
                     canBadge = false
                     TriggerClientEvent('QBCore:Notify', source, 'Come back when you have all the items for the '..Config.Badge[type].label, 'error', 5000)
-                    break
-                          
+                    break                          
                 end
             end
-
                 if canBadge then 
                     TriggerClientEvent('QBCore:Notify', source, 'You got a '..Config.Badge[type].label..'!', 'success', 10000)
                     for k, v in pairs(Config.Badge[type].cards) do
@@ -114,22 +124,8 @@ AddEventHandler("Cards:server:badges", function(type)
                     end 
                    Citizen.Wait(2000)
                     Player.Functions.AddItem(type, 1)
-                    
                 end 
 end)
-
-if craft then
-    TriggerClientEvent('QBCore:Notify', source, Config.Recipes[item].Notify, 'success', 10000)
-    for k, v in pairs(Config.Recipes[item].Ingredients) do
-        xPlayer.Functions.RemoveItem(k, v)
-        --xPlayer.remove(k, v)
-        -- works here?!?!?
-    end
-    TriggerClientEvent('gl-burgershot:cookAnimation',source,Config.Recipes[item].Animation)
-    Wait(10000)
-    xPlayer.Functions.AddItem(item, 1)
-    
-end
 
 QBCore.Functions.CreateUseableItem("pokebox", function(source, item)
     local Player = QBCore.Functions.GetPlayer(source)
@@ -151,10 +147,9 @@ AddEventHandler("Cards:sellItem", function(itemName, amount, price)
     
     if xPlayer.Functions.RemoveItem(itemName, amount) then
         xPlayer.Functions.AddMoney('cash', price, 'Card-sell')
-        TriggerClientEvent("QBCore:Notify", source, "You sold " .. amount .. " " .. itemName .. " for $" .. price, "success", 500)
+        TriggerClientEvent("QBCore:Notify", source, "You sold " .. amount .. " " .. itemName .. " for $" .. price, "success", 5000)
     end
 end)
-
 
 QBCore.Functions.CreateCallback('Cards:server:get:drugs:items', function(source, cb)
     local src = source
@@ -168,7 +163,6 @@ QBCore.Functions.CreateCallback('Cards:server:get:drugs:items', function(source,
     end
     cb(AvailableDrugs)
 end)
-
 
 function tprint (t, s)
     for k, v in pairs(t) do
