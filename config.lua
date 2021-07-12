@@ -3,7 +3,8 @@ Config = {}
 Config.CardshopLocation =  {
 	['Cardshop'] = {
 		location = vector3(174.08, -1321.79, 29.36),
-		},
+		label = 'TCG Shop - Sell Cards'
+	},
 }
 
 Config.Badge = {
@@ -135,6 +136,10 @@ Config.Badge = {
 		},
     },
 }
+
+Config.CardshopBlipText = "Cardshop"
+Config.CardshopBlipColor = 5
+Config.CardshopBlipSprite = 272
 
 Config.CardshopItems = {
 	['boulderbadge']		 = 1000,
