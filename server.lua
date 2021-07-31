@@ -79,7 +79,7 @@ AddEventHandler('Cards:Server:rewarditem', function()
 	end
 
     Citizen.Wait(10)
-    print(card)
+    --print(card)
 
     if card ~= '' then        
         TriggerClientEvent('Cards:Client:CardChoosed', src, card)
