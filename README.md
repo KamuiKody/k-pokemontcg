@@ -441,5 +441,8 @@ I'd Like to also point out that I am not to be recognized as sole creator of thi
 I am still learning and got tons of help from a great team of guys!
 Big thanks to anyone that helped me if you want any sort of individual recognition say the word!
 
+
 join https://discord.gg/3j9b439TeY  to recieve support or to show some love! 
+
+card icons and inspiration from DaddyAF#8312
 
