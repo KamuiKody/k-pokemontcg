@@ -187,12 +187,25 @@ AddEventHandler("Cards:client:UseBox", function()
 end)
 
 Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(500)
-        QBCore.Functions.TriggerCallback("Cards:server:Menu",function(item,amount)
-            print(item,amount)
-        end)
-    end
+    while true do 
+        Citizen.Wait(2500)
+        local PlayerData = QBCore.Functions.GetPlayerData()
+        local ShopCoords = Config.CardshopLocation['Cardshop'].location
+        local ped = PlayerPedId()
+        local pos = GetEntityCoords(ped)
+        local dist = #(pos - ShopCoords)
+        if dist < 2.5 and not PlayerData.metadata["isdead"] and not PlayerData.metadata["inlaststand"] and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() then
+            inshop = true
+        else 
+            inshop = false
+        end
+        if inshop == true then
+            Citizen.Wait(1000)
+            QBCore.Functions.TriggerCallback("Cards:server:Menu",function(item,amount)
+                print(item,amount)
+            end)
+        end
+    end 
 end)
 
 RegisterNetEvent("qb-pokemontcg:client:badgesound")
@@ -219,6 +232,7 @@ AddEventHandler('Cards:client:openMenu', function()
 end)
 
 menu_button:On('select', function(item)
+    menu2:ClearItems(true)
     QBCore.Functions.TriggerCallback('Cards:server:get:drugs:items', function(CardsResult)
         for k, v in pairs(CardsResult) do
             local itemName = v['Item']
