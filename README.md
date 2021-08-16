@@ -1,8 +1,14 @@
-## Must have below added to qb-inventory for the box to have its own stash (This stash holds anything with 0 weight so make sure to have anything else that weighs 0 = 1 or something.)
+## Dependencies  ##
+### QBCore - https://github.com/qbcore-framework/qb-core ###
+### qb-inventory - https://github.com/qbcore-framework/qb-inventory ###
+### OR aj-inventory (With all stuff below already added in this fork) - https://github.com/Kmack710/aj-inventory ###
+### Interactsound - https://github.com/plunkettscott/interact-sound ###
+
+## Must have below added to qb-inventory for the box to have its own stash (This stash holds anything with 0 weight so make sure to have anything else that weighs 0 = 1 or something.) ##
 
 ## Client/Main.lua ##
 
-# Under (around ln 35) # 
+### Under (around ln 35) ### 
 ```lua
 
  if name ~= CurrentStash or CurrentStash == nil then
@@ -16,48 +22,28 @@
         if name ~= CurrentStash or CurrentStash == nil then
             TriggerServerEvent('inventory:server:SetIsOpenState', false, type, id)
         end
-
---################################################################
-
---# under this (around LN 736)#
+```
+### under this (around LN 736)###
+```lua
 
 
     CurrentStash = stash
 end)
 
---# Add this # 
-
+-->>># Add this # 
 
 RegisterNetEvent("inventory:client:SetCurrentPokeBox")
 AddEventHandler("inventory:client:SetCurrentPokeBox", function(stash)
     CurrentStash = pokeBox
 end)
-
-
-
-
-
-
-
-
-
-
-
 ```
-
-
-
-##### Server/main.lua ###################
+## Server/main.lua ##
+### Under this (around line 67) ###
 ```lua
---# Under this (around line 67)
-
-
 	if not IsOpen then
 		if type == "stash" then
 			Stashes[id].isOpen = false
-
---# add this # 
-
+-->># add this # 
 
 		elseif type == "pokeBox" then
 			Stashes[id].isOpen = false
@@ -70,17 +56,15 @@ end)
 		elseif type == "trunk" then
 			Trunks[id].isOpen = false
 		elseif type == "glovebox" then
-
---###########################################################
-
--- Under this (line 134ish)
+```
+### Under this (line 134ish ### 
+```lua
 
 						Stashes[id].label = secondInv.label
 					end
 				end
 
-
--- add this # 
+-->>>> add this # 
 
 
 			elseif name == "pokeBox" then
@@ -126,28 +110,22 @@ end)
 						Stashes[id].label = secondInv.label
 					end
 				end
-
---#################################
-
--- Under this (line 344ish)
+```
+### Under this (line 344ish) ###
+```lua
 	end
 	elseif type == "stash" then
 		SaveStashItems(id, Stashes[id].items)
-
--- add this 
+-->>> add this 
 	elseif type == "pokeBox" then
 		SaveStashItems(id, Stashes[id].items)
-
-
---#########################
-
--- under this (line 508ish)
+```
+### Under this (line 508ish) ##
+```lua
 				end
 				local itemInfo = QBCore.Shared.Items[fromItemData.name:lower()]
 				AddToStash(stashId, toSlot, fromSlot, itemInfo["name"], fromAmount, fromItemData.info)
-
-
--- add this 
+-->>> add this 
 
 
 			elseif QBCore.Shared.SplitStr(toInventory, "-")[1] == "pokeBox" then  --- PokeBox
@@ -177,15 +155,13 @@ end)
 					TriggerClientEvent('QBCore:Notify', src, "You can\'t Store this item in here..", 'error')
 
 				end
-
---- #########################################
-
--- Under this (line 774ish)
+```
+### Under this (line 774ish) ###
+```lua
 		else
 			TriggerClientEvent("QBCore:Notify", src, "Item doesn\'t exist??", "error")
 		end
-
--- add this 
+-->>> add this 
 elseif QBCore.Shared.SplitStr(fromInventory, "-")[1] == "pokeBox" then
 		local stashId = QBCore.Shared.SplitStr(fromInventory, "-")[2]
 		local fromItemData = Stashes[stashId].items[fromSlot]
@@ -232,24 +208,19 @@ elseif QBCore.Shared.SplitStr(fromInventory, "-")[1] == "pokeBox" then
 		else
 			TriggerClientEvent("QBCore:Notify", src, "Item doesn\'t exist??", "error")
 		end
-
-
----###########################################################
- 
-
- -- Underthis (line 1642ish )
+```
+### Under this (line 1642ish ) ###
+```lua
  			if Stashes[invId] ~= nil then 
 				Stashes[invId].isOpen = false
 			end
--- add this 
+-->>>> add this 
 		elseif invType == "pokeBox" then
 			if Stashes[invId] ~= nil then 
 				Stashes[invId].isOpen = false
 			end
-
-
 ```
-## for shared.lua ##
+# For shared.lua #
 ```lua
 ["boosterpack"] 				 = {["name"] = "boosterpack", 			  	  	["label"] = "Boosterpack", 				["weight"] = 0, 		["type"] = "item", 		["image"] = "boosterPack.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,   ["combinable"] = nil,   ["description"] = "Pack of Cards"},
 ["abra"] 						 = {["name"] = "abra", 			  			  	["label"] = "Abra", 					["weight"] = 0, 		["type"] = "item", 		["image"] = "abra.png", 				["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,	   ["combinable"] = nil,   ["description"] = "3/6 for Marsh Badge"},
@@ -430,19 +401,22 @@ elseif QBCore.Shared.SplitStr(fromInventory, "-")[1] == "pokeBox" then
 ["snorlaxvmaxrainbow"] 			 = {["name"] = "snorlaxvmaxrainbow", 			["label"] = "Rainbox Snorlax", 			["weight"] = 0, 		["type"] = "item", 		["image"] = "snorlaxvmaxrainbow.png", 	["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,       ["combinable"] = nil,   ["description"] = "Rainbow Card"},
 ["pokebox"] 					 = {["name"] = "pokebox", 						["label"] = "Pokemon TCG Box", 			["weight"] = 50, 		["type"] = "item", 		["image"] = "pokebox.png", 				["unique"] = true, 		["useable"] = true, 	["shouldClose"] = true, 	   ["combinable"] = nil,  ["description"] = "Pokemon TCG Storage Box"},
 
-
-## you may change shop location coords or the maps that i use for the shops are linked below
+```
+## you may change shop location coords or the maps that i use for the shops are linked below ##
 
 https://modit.store/collections/gtav-maps-mlo-shell/products/pawn-and-jewelry-mlo-interior?variant=38162504024247#
 
 https://www.youtube.com/watch?v=KSfuP583gV8&feature=youtu.be
 
 I'd Like to also point out that I am not to be recognized as sole creator of this project.
+
 I am still learning and got tons of help from a great team of guys!
+
 Big thanks to anyone that helped me if you want any sort of individual recognition say the word!
 
 
-join https://discord.gg/3j9b439TeY  to recieve support or to show some love! 
+Join https://discord.gg/3j9b439TeY  to recieve support or to show some love! 
 
-card icons and inspiration from DaddyAF#8312
+Card icons and inspiration from DaddyAF#8312
+Pokebox and Optimization @Kmack710 
 
