@@ -60,7 +60,7 @@ AddEventHandler('Cards:Server:rewarditem', function()
     local card = ''
 
     local randomChance = math.random(1, 1000)
-    print(randomChance)
+   -- print(randomChance) -- if you wanna see the random chance
     if randomChance <= 5 then 
         card = rainbowCards[math.random(1,#rainbowCards)]         
 	elseif randomChance >= 6 and randomChance <= 19 then
