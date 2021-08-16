@@ -92,9 +92,10 @@ RegisterServerEvent('Cards:Server:GetPokemon')
 AddEventHandler('Cards:Server:GetPokemon', function(pokemon)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
+    local pokemonName = QBCore.Shared.Items[pokemon].label
     if pokemon ~= nil then
         TriggerClientEvent("inventory:client:ItemBox", QBCore.Shared.Items[pokemon], "add")
-        TriggerClientEvent('QBCore:Notify', source, "You got '".. pokemon.. "'")
+        TriggerClientEvent('QBCore:Notify', source, "You got "..pokemonName.. "")
         Player.Functions.AddItem(pokemon, 1)
     end  
 end)
