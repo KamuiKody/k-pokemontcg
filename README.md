@@ -3,6 +3,7 @@
 ### qb-inventory - https://github.com/qbcore-framework/qb-inventory ###
 ### OR aj-inventory (With all stuff below already added in this fork) - https://github.com/Kmack710/aj-inventory ###
 ### Interactsound - https://github.com/plunkettscott/interact-sound ###
+### menuv - https://github.com/qbcore-framework/menuv ###
 
 ## Must have below added to qb-inventory for the box to have its own stash (This stash holds anything with 0 weight so make sure to have anything else that weighs 0 = 1 or something.) ##
 
