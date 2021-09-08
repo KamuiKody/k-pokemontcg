@@ -406,9 +406,9 @@ elseif QBCore.Shared.SplitStr(fromInventory, "-")[1] == "pokeBox" then
 ```
 ## you may change shop location coords or the maps that i use for the shops are linked below ##
 
-https://modit.store/collections/gtav-maps-mlo-shell/products/pawn-and-jewelry-mlo-interior?variant=38162504024247#
-
 https://www.youtube.com/watch?v=KSfuP583gV8&feature=youtu.be
+
+the pawnshop map can be purchased in this discord https://discord.com/invite/JrjkacM
 
 I'd Like to also point out that I am not to be recognized as sole creator of this project.
 
