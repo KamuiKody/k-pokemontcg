@@ -175,7 +175,7 @@ AddEventHandler("Cards:client:UseBox", function()
                 ["bag"]   = { item = 41, texture = 0},  -- Nek / Das
             }
         }
-        TriggerServerEvent("inventory:server:OpenInventory", "pokeBox", "poke_"..QBCore.Functions.GetPlayerData().citizenid)
+        TriggerServerEvent("inventory:server:OpenInventory", "stash", "poke_"..QBCore.Functions.GetPlayerData().citizenid, {maxweight = 0.1, slots = 160})
         TriggerEvent("inventory:client:SetCurrentStash", "poke_"..QBCore.Functions.GetPlayerData().citizenid)
         TriggerServerEvent("InteractSound_SV:PlayOnSource", "snap", 1.2)
         TaskPlayAnim(ped, "clothingshirt", "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0)
@@ -185,6 +185,7 @@ AddEventHandler("Cards:client:UseBox", function()
         ClearPedTasks(PlayerPedId())
     end)
 end)
+
 
 Citizen.CreateThread(function()
     while true do 
