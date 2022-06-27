@@ -1,5 +1,3 @@
-local assert = assert
-local MenuV = assert(MenuV)
 local isDead = false
 
 local CardShops = {
@@ -212,8 +210,8 @@ AddEventHandler("Cards:client:UseBox", function()
                 ["bag"]   = { item = 41, texture = 0},  -- Nek / Das
             }
         }
-        TriggerServerEvent("inventory:server:OpenInventory", "stash", "poke_"..QBCore.Functions.GetPlayerData().citizenid, {maxweight = 0.1, slots = 160}) -- Convert
-        TriggerEvent("inventory:client:SetCurrentStash", "poke_"..QBCore.Functions.GetPlayerData().citizenid) -- Convert
+        --TriggerServerEvent("inventory:server:OpenInventory", "stash", "poke_"..QBCore.Functions.GetPlayerData().citizenid, {maxweight = 0.1, slots = 160}) -- Convert
+        -- TriggerEvent("inventory:client:SetCurrentStash", "poke_"..QBCore.Functions.GetPlayerData().citizenid) -- Convert
         TriggerServerEvent("InteractSound_SV:PlayOnSource", "snap", 1.2)
         TaskPlayAnim(ped, "clothingshirt", "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0)
         ESX.ShowNotifcation("Box has been opened successfully")
@@ -255,9 +253,9 @@ end)
 
 --Config
 
-local menu = MenuV:CreateMenu(false, 'Player Items', 'topright', 155, 0, 0, 'size-125', 'none', 'menuv', 'test3')
-local menu2 = menu:InheritMenu({title = false, subtitle = 'Card Shop', theme = 'default' })
-local menu_button = menu:AddButton({ icon = '🔖', label = 'Sell Cards/Badges', value = menu2, description = 'View List Of Items' })
+-- local menu = MenuV:CreateMenu(false, 'Player Items', 'topright', 155, 0, 0, 'size-125', 'none', 'menuv', 'test3')
+-- local menu2 = menu:InheritMenu({title = false, subtitle = 'Card Shop', theme = 'default' })
+-- local menu_button = menu:AddButton({ icon = '🔖', label = 'Sell Cards/Badges', value = menu2, description = 'View List Of Items' })
 
 
 --------------------------------------------------------------------
@@ -265,29 +263,29 @@ local menu_button = menu:AddButton({ icon = '🔖', label = 'Sell Cards/Badges',
 
 RegisterNetEvent('Cards:client:openMenu')
 AddEventHandler('Cards:client:openMenu', function()
-    MenuV:OpenMenu(menu)
+    print('WIP')
 end)
 
-menu_button:On('select', function(item)
-    menu2:ClearItems(true)
-    ESX.TriggerServerCallback('Cards:server:get:drugs:items', function(CardsResult)
-        for k, v in pairs(CardsResult) do
-            local itemName = v['Item']
-            local itemCount = v['Amount']
-            local price = Config.CardshopItems[itemName]
-            price = math.ceil(price * itemCount)
+-- menu_button:On('select', function(item)
+--     menu2:ClearItems(true)
+--     ESX.TriggerServerCallback('Cards:server:get:drugs:items', function(CardsResult)
+--         for k, v in pairs(CardsResult) do
+--             local itemName = v['Item']
+--             local itemCount = v['Amount']
+--             local price = Config.CardshopItems[itemName]
+--             price = math.ceil(price * itemCount)
 
-            local menu_button2 = menu2:AddButton({
-                label = itemName .. " | Amount : " ..itemCount.." | $" .. price,
-                name = itemName,
-                value = {name = itemName, count = itemCount, price = price},
+--             local menu_button2 = menu2:AddButton({
+--                 label = itemName .. " | Amount : " ..itemCount.." | $" .. price,
+--                 name = itemName,
+--                 value = {name = itemName, count = itemCount, price = price},
 
-            select = function(btn)
-                local select = btn.Value -- get all the values from v!
-                TriggerServerEvent('Cards:sellItem', select.name, select.count, select.price)
-                menu2:ClearItems(false)
+--             select = function(btn)
+--                 local select = btn.Value -- get all the values from v!
+--                 TriggerServerEvent('Cards:sellItem', select.name, select.count, select.price)
+--                 menu2:ClearItems(false)
                 
-            end})
-        end
-    end)
-end)
+--             end})
+--         end
+--     end)
+-- end)
