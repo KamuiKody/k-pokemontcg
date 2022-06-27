@@ -6,24 +6,23 @@ ui_page "html/index.html"
 fx_version "cerulean"
 game "gta5"
 
-shared_script "@qb-core/import.lua"
+shared_scripts {
+    '@es_extended/imports.lua',
+    'config.lua'
+}
 
 client_scripts {
     '@menuv/menuv.lua',
-    'config.lua',
     'client.lua'
 }
 
-server_scripts {
- 'config.lua',
- 'server.lua',
-}
+server_script 'server.lua'
 
 files {
- 'html/index.html',
- 'html/img/*.png',
- 'html/script.js',
- 'html/style.css',
+    'html/index.html',
+    'html/img/*.png',
+    'html/script.js',
+    'html/style.css',
 }
 
 dependencies {
