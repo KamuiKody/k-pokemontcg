@@ -5,45 +5,44 @@ local vCards = {"blastoisev", "charizardv", "mewv", "pikachuv", "snorlaxv", "ven
 local vmaxCards = {"blastoisevmax", "mewtwogx", "snorlaxvmax", "venusaurvmax", "vmaxcharizard", "vmaxpikachu"}
 local rainbowCards = {"rainbowmewtwogx", "rainbowvmaxcharizard", "rainbowvmaxpikachu", "snorlaxvmaxrainbow"}
 
-QBCore.Functions.CreateUseableItem("boosterbox", function(source, item)
-    local Player = QBCore.Functions.GetPlayer(source)
-	if Player.Functions.RemoveItem(item.name, 1, item.slot, item.info) then
+ESX.RegisterUsableItem("boosterbox", function(source, item)
+    local xPlayer = ESX.GetPlayerFromId(source)
+	if xPlayer.removeInventoryItem(item.name, 1) then
         TriggerClientEvent("Cards:Client:OpenCards", source, item.name)
-			local xPlayer = QBCore.Functions.GetPlayer(source)
-				xPlayer.Functions.AddItem('boosterpack',4)
-           Citizen.Wait(4000)
-        TriggerClientEvent('QBCore:Notify', source, 'You got 4 booster packs!')
-            Citizen.Wait(1000)
+		xPlayer.addInventoryItem('boosterpack', 4)
+        Wait(4000)
+        xPlayer.showNotification('You got 4 booster packs!')
+        Wait(1000)
     end
 end)
 
-QBCore.Functions.CreateCallback("Cards:server:Menu",function(source,cb)
-    local player = QBCore.Functions.GetPlayer(source)
+ESX.RegisterServerCallback("Cards:server:Menu",function(source,cb)
+    local xPlayer = ESX.GetPlayerFromId(source)
     local item = "...."
-        if player ~= nil then
-            if player.Functions.GetItemByName(item) then
+        if xPlayer ~= nil then
+            if xPlayer.getInventoryItem(item) then
             cb(item,item.amount)
         end
     end
 end)
 
-QBCore.Functions.CreateUseableItem("boosterpack", function(source, item)
-    local Player = QBCore.Functions.GetPlayer(source)  
-        TriggerClientEvent("Cards:Client:OpenPack", source)  
-        Citizen.Wait(4000)
-        TriggerClientEvent('QBCore:Notify', source, 'You got 4 cards!')
+ESX.RegisterUsableItem("boosterpack", function(source, item)
+    local xPlayer = ESX.GetPlayerFromId(source)  
+    TriggerClientEvent("Cards:Client:OpenPack", source)  
+    Wait(4000)
+    xPlayer.showNotification('You got 4 cards!')
 end)
 
 RegisterServerEvent('Cards:Server:RemoveItem')
 AddEventHandler('Cards:Server:RemoveItem', function()
-    local src = source
-    local Player = QBCore.Functions.GetPlayer(source)
-    local pack = Player.Functions.GetItemByName("boosterpack")
+    local source = source
+    local xPlayer = ESX.GetPlayerFromId(source)
+    local pack = xPlayer.getInventoryItem("boosterpack")
 
     if pack.amount == nil then
-        TriggerClientEvent('QBCore:Notify', source, 'You dont have a boosterpack!')
+        xPlayer.showNotification('You dont have a boosterpack!')
     else
-        Player.Functions.RemoveItem('boosterpack',1)
+        xPlayer.removeInventoryItem('boosterpack', 1)
     end
   
 end)
@@ -54,9 +53,9 @@ end)
 
 RegisterServerEvent('Cards:Server:rewarditem')
 AddEventHandler('Cards:Server:rewarditem', function()
-    local src = source
-    local Player = QBCore.Functions.GetPlayer(source)
-    local pack = Player.Functions.GetItemByName("boosterpack")
+    local source = source
+    local xPlayer = ESX.GetPlayerFromId(source)
+    local pack = xPlayer.getInventoryItem("boosterpack")
     local card = ''
 
     local randomChance = math.random(1, 1000)
@@ -78,60 +77,60 @@ AddEventHandler('Cards:Server:rewarditem', function()
         card = basicCards[math.random(1, #basicCards)]
 	end
 
-    Citizen.Wait(10)
+    Wait(10)
     --print(card)
 
     if card ~= '' then        
-        TriggerClientEvent('Cards:Client:CardChoosed', src, card)
+        TriggerClientEvent('Cards:Client:CardChoosed', source, card)
     else
-        TriggerClientEvent('QBCore:Notify', source, 'There is a problem in cards!')
+        xPlayer.showNotification('There is a problem in cards!')
     end 
 end)
 
 RegisterServerEvent('Cards:Server:GetPokemon')
 AddEventHandler('Cards:Server:GetPokemon', function(pokemon)
-    local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
-    local pokemonName = QBCore.Shared.Items[pokemon].label
+    local source = source
+    local xPlayer = ESX.GetPlayerFromId(source)
+    local pokemonName = QBCore.Shared.Items[pokemon].label -- Convert
     if pokemon ~= nil then
-        TriggerClientEvent("inventory:client:ItemBox", QBCore.Shared.Items[pokemon], "add")
-        TriggerClientEvent('QBCore:Notify', source, "You got "..pokemonName.. "")
-        Player.Functions.AddItem(pokemon, 1)
+        TriggerClientEvent("inventory:client:ItemBox", QBCore.Shared.Items[pokemon], "add") -- Convert
+        xPlayer.showNotification("You got "..pokemonName.. "")
+        xPlayer.addInventoryItem(pokemon, 1)
     end  
 end)
 
 RegisterServerEvent("Cards:server:badges")
 AddEventHandler("Cards:server:badges", function(type)
-        local total = 0
-        local canBadge = true
-        local Player = QBCore.Functions.GetPlayer(source)
-            for k, v in pairs(Config.Badge[type].cards) do 
-                if Player.Functions.GetItemByName(k) ~= nil then 
-                    if Player.Functions.GetItemByName(k).amount < v then 
-                       canBadge = false
-                      TriggerClientEvent('QBCore:Notify', source, 'Come back when you have all the items for the '..Config.Badge[type].label, 'error', 5000) 
-                    end
-                else 
-                    canBadge = false
-                    TriggerClientEvent('QBCore:Notify', source, 'Come back when you have all the items for the '..Config.Badge[type].label, 'error', 5000)
-                    break                          
-                end
+    local source = source
+    local total = 0
+    local canBadge = true
+    local xPlayer = ESX.GetPlayerFromId(source)
+    for k, v in pairs(Config.Badge[type].cards) do 
+        if xPlayer.getInventoryItem(k) ~= nil then 
+            if xPlayer.getInventoryItem(k).amount < v then 
+                canBadge = false
+                xPlayer.showNotification('Come back when you have all the items for the '..Config.Badge[type].label.. '')
             end
-                if canBadge then 
-                    TriggerClientEvent('QBCore:Notify', source, 'You got a '..Config.Badge[type].label..'!', 'success', 10000)
-                    for k, v in pairs(Config.Badge[type].cards) do
-                    Player.Functions.RemoveItem(k, v)
-
-                    end 
-                   Citizen.Wait(2000)
-                    Player.Functions.AddItem(type, 1)
-                end 
+        else 
+            canBadge = false
+            xPlayer.showNotification('Come back when you have all the items for the '..Config.Badge[type].label.. '')
+            break                          
+        end
+    end
+    if canBadge then 
+        xPlayer.showNotification('You got a '..Config.Badge[type].label..'!')
+        for k, v in pairs(Config.Badge[type].cards) do
+            xPlayer.removeInventoryItem(k, v)
+        end 
+        Wait(2000)
+        xPlayer.removeInventoryItem(type, 1)
+    end 
 end)
 
-QBCore.Functions.CreateUseableItem("pokebox", function(source, item)
-    local Player = QBCore.Functions.GetPlayer(source)
+ESX.RegisterUsableItem("pokebox", function(source, item)
+    local Player = ESX.GetPlayerFromId(source)
     TriggerClientEvent("Cards:client:UseBox", source)
-    TriggerEvent("qb-log:server:CreateLog", "pokebox", "PokeBox", "white", "Player Opened The Box **"..GetPlayerName(source).."** Citizen ID : **"..Player.PlayerData.citizenid.. "**", false)
+    -- TriggerEvent("qb-log:server:CreateLog", "pokebox", "PokeBox", "white", "Player Opened The Box **"..GetPlayerName(source).."** Citizen ID : **"..Player.PlayerData.citizenid.. "**", false)
 end)
 
 function CanItemBeSaled(item)
@@ -144,20 +143,21 @@ end
 
 RegisterServerEvent("Cards:sellItem")
 AddEventHandler("Cards:sellItem", function(itemName, amount, price)
-	local xPlayer = QBCore.Functions.GetPlayer(source)
+    local source = source
+	local xPlayer = ESX.GetPlayerFromId(source)
     
-    if xPlayer.Functions.RemoveItem(itemName, amount) then
-        xPlayer.Functions.AddMoney('cash', price, 'Card-sell')
-        TriggerClientEvent("QBCore:Notify", source, "You sold " .. amount .. " " .. itemName .. " for $" .. price, "success", 5000)
+    if xPlayer.removeInventoryItem(itemName, amount) then
+        xPlayer.addMoney(price)
+        xPlayer.showNotification("You sold " .. amount .. " " .. itemName .. " for $" .. price)
     end
 end)
 
-QBCore.Functions.CreateCallback('Cards:server:get:drugs:items', function(source, cb)
-    local src = source
+ESX.RegisterServerCallback('Cards:server:get:drugs:items', function(source, cb)
+    local source = source
     local AvailableDrugs = {}
-    local Player = QBCore.Functions.GetPlayer(src)
+    local xPlayer = ESX.GetPlayerFromId(source)
     for k, v in pairs(Config.CardshopItems) do
-        local DrugsData = Player.Functions.GetItemByName(k)
+        local DrugsData = xPlayer.getInventoryItem(k)
         if DrugsData ~= nil then
             table.insert(AvailableDrugs, {['Item'] = DrugsData.name, ['Amount'] = DrugsData.amount})
         end
