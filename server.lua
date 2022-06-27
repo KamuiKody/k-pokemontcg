@@ -91,9 +91,8 @@ RegisterServerEvent('Cards:Server:GetPokemon')
 AddEventHandler('Cards:Server:GetPokemon', function(pokemon)
     local source = source
     local xPlayer = ESX.GetPlayerFromId(source)
-    local pokemonName = QBCore.Shared.Items[pokemon].label -- Convert
-    if pokemon ~= nil then
-        TriggerClientEvent("inventory:client:ItemBox", QBCore.Shared.Items[pokemon], "add") -- Convert
+    local pokemonName = ESX.GetItemLabel(pokemon) -- May be wrong
+    if pokemon ~= nil then 
         xPlayer.showNotification("You got "..pokemonName.. "")
         xPlayer.addInventoryItem(pokemon, 1)
     end  
