@@ -1,11 +1,10 @@
 ## Dependencies  ##
-### QBCore - https://github.com/qbcore-framework/qb-core ###
-### qb-inventory - https://github.com/qbcore-framework/qb-inventory ### Any other inventory should work with this update now
+### es_extended & esx_menu_default - https://github.com/esx-framework/esx-legacy ###
 ### Interactsound - https://github.com/plunkettscott/interact-sound ###
-### menuv - https://github.com/qbcore-framework/menuv ###
 
 ## Must have below added to qb-inventory for the box to have its own stash (This stash holds anything with 0 weight so make sure to have anything else that weighs 0 = 1 or something.) ##
 
+## If using another inventory ##
 
 # For shared.lua #
 ```lua
