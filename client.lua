@@ -86,11 +86,12 @@ AddEventHandler("Cards:Client:OpenCards", function()
     while (not HasAnimDictLoaded("mp_arresting")) do
         Wait(0)
     end
-      local PedCoords = GetEntityCoords(PlayerPedId())
-      propbox = CreateObject(GetHashKey('prop_boosterbox_01'),PedCoords.x, PedCoords.y,PedCoords.z, true, true, true)
-      AttachEntityToEntity(propbox, PlayerPedId(), GetPedBoneIndex(PlayerPedId(), 0xDEAD), 0.1, 0.1, 0.0, 0.0, 10.0, 90.0, false, false, false, false, 2, true)
-        Wait(5)
-        TriggerServerEvent("InteractSound_SV:PlayOnSource", "boxopen", 0.8)
+
+    local PedCoords = GetEntityCoords(PlayerPedId())
+    propbox = CreateObject(GetHashKey('prop_boosterbox_01'),PedCoords.x, PedCoords.y,PedCoords.z, true, true, true)
+    AttachEntityToEntity(propbox, PlayerPedId(), GetPedBoneIndex(PlayerPedId(), 0xDEAD), 0.1, 0.1, 0.0, 0.0, 10.0, 90.0, false, false, false, false, 2, true)
+    Wait(5)
+    TriggerServerEvent("InteractSound_SV:PlayOnSource", "boxopen", 0.8)
     ESX.Progressbar("opening box..", 9500,{
         FreezePlayer = true, 
         animation ={
@@ -108,42 +109,42 @@ end)
 RegisterNetEvent("Cards:Client:OpenPack")
 AddEventHandler("Cards:Client:OpenPack", function() 
     RequestAnimDict("mp_arresting")
-      while (not HasAnimDictLoaded("mp_arresting")) do
-      Wait(0)
-      end
-          TaskPlayAnim(PlayerPedId(), "mp_arresting" ,"a_uncuff" ,8.0, -8.0, -1, 1, 0, false, false, false )
-          local PedCoords = GetEntityCoords(PlayerPedId())
-          propcards = CreateObject(GetHashKey('prop_boosterpack_01'),PedCoords.x, PedCoords.y,PedCoords.z, true, true, true)
-          AttachEntityToEntity(propcards, PlayerPedId(), GetPedBoneIndex(PlayerPedId(), 0xDEAD), 0.1, 0.1, 0.0, 70.0, 10.0, 90.0, false, false, false, false, 2, true)
-    QBCore.Functions.Progressbar("drink_something", "opening pack..", 3000, false, true, {
-        disableMovement = false,
-        disableCarMovement = false,
-        disableMouse = false,
-        disableCombat = true,
-        disableInventory = true,
-    }, {}, {}, {}, function()-- Done
-        TriggerServerEvent("InteractSound_SV:PlayOnSource", "dealfour", 0.9) 
-        Wait(500)
-        SetNuiFocus(true, true)
-        SendNUIMessage({
-            open = true,
-            class = 'open',
-        })
-        DeleteEntity(propcards)
-        ClearPedTasks(PlayerPedId())
-        TriggerServerEvent('Cards:Server:RemoveItem')
-    end)
+    while (not HasAnimDictLoaded("mp_arresting")) do
+        Wait(0)
+    end
+    local PedCoords = GetEntityCoords(PlayerPedId())
+    propcards = CreateObject(GetHashKey('prop_boosterpack_01'),PedCoords.x, PedCoords.y,PedCoords.z, true, true, true)
+    AttachEntityToEntity(propcards, PlayerPedId(), GetPedBoneIndex(PlayerPedId(), 0xDEAD), 0.1, 0.1, 0.0, 70.0, 10.0, 90.0, false, false, false, false, 2, true)
+    ESX.Progressbar("opening pack..", 3000,{
+        FreezePlayer = true, 
+        animation ={
+            type = "anim",
+            dict = "mp_arresting", 
+            lib ="a_uncuff" 
+        }, 
+        onFinish = function()
+            TriggerServerEvent("InteractSound_SV:PlayOnSource", "dealfour", 0.9) 
+            Wait(500)
+            SetNuiFocus(true, true)
+            SendNUIMessage({
+                open = true,
+                class = 'open',
+            })
+            DeleteEntity(propcards)
+            ClearPedTasks(PlayerPedId())
+            TriggerServerEvent('Cards:Server:RemoveItem')
+    end})
 end)
 
 RegisterNetEvent("Cards:Client:OpenPack")
 AddEventHandler("Cards:Client:OpenPack", function() 
     RequestAnimDict("mp_arresting")
     while (not HasAnimDictLoaded("mp_arresting")) do
-    Wait(0)
+        Wait(0)
     end
-        local PedCoords = GetEntityCoords(PlayerPedId())
-        propcards = CreateObject(GetHashKey('prop_boosterpack_01'),PedCoords.x, PedCoords.y,PedCoords.z, true, true, true)
-        AttachEntityToEntity(propcards, PlayerPedId(), GetPedBoneIndex(PlayerPedId(), 0xDEAD), 0.1, 0.1, 0.0, 70.0, 10.0, 90.0, false, false, false, false, 2, true)
+    local PedCoords = GetEntityCoords(PlayerPedId())
+    propcards = CreateObject(GetHashKey('prop_boosterpack_01'),PedCoords.x, PedCoords.y,PedCoords.z, true, true, true)
+    AttachEntityToEntity(propcards, PlayerPedId(), GetPedBoneIndex(PlayerPedId(), 0xDEAD), 0.1, 0.1, 0.0, 70.0, 10.0, 90.0, false, false, false, false, 2, true)
     ESX.Progressbar("opening pack..", 3000,{
         FreezePlayer = true , 
         animation ={
@@ -253,9 +254,9 @@ end)
 
 --Config
 
--- local menu = MenuV:CreateMenu(false, 'Player Items', 'topright', 155, 0, 0, 'size-125', 'none', 'menuv', 'test3')
--- local menu2 = menu:InheritMenu({title = false, subtitle = 'Card Shop', theme = 'default' })
--- local menu_button = menu:AddButton({ icon = '🔖', label = 'Sell Cards/Badges', value = menu2, description = 'View List Of Items' })
+local menu = MenuV:CreateMenu(false, 'Player Items', 'topright', 155, 0, 0, 'size-125', 'none', 'menuv', 'test3')
+local menu2 = menu:InheritMenu({title = false, subtitle = 'Card Shop', theme = 'default' })
+local menu_button = menu:AddButton({ icon = '🔖', label = 'Sell Cards/Badges', value = menu2, description = 'View List Of Items' })
 
 
 --------------------------------------------------------------------
@@ -263,29 +264,29 @@ end)
 
 RegisterNetEvent('Cards:client:openMenu')
 AddEventHandler('Cards:client:openMenu', function()
-    print('WIP')
+    MenuV:OpenMenu(menu)
 end)
 
--- menu_button:On('select', function(item)
---     menu2:ClearItems(true)
---     ESX.TriggerServerCallback('Cards:server:get:drugs:items', function(CardsResult)
---         for k, v in pairs(CardsResult) do
---             local itemName = v['Item']
---             local itemCount = v['Amount']
---             local price = Config.CardshopItems[itemName]
---             price = math.ceil(price * itemCount)
+menu_button:On('select', function(item)
+    menu2:ClearItems(true)
+    ESX.TriggerServerCallback('Cards:server:get:drugs:items', function(CardsResult)
+        for k, v in pairs(CardsResult) do
+            local itemName = v['Item']
+            local itemCount = v['Amount']
+            local price = Config.CardshopItems[itemName]
+            price = math.ceil(price * itemCount)
 
---             local menu_button2 = menu2:AddButton({
---                 label = itemName .. " | Amount : " ..itemCount.." | $" .. price,
---                 name = itemName,
---                 value = {name = itemName, count = itemCount, price = price},
+            local menu_button2 = menu2:AddButton({
+                label = itemName .. " | Amount : " ..itemCount.." | $" .. price,
+                name = itemName,
+                value = {name = itemName, count = itemCount, price = price},
 
---             select = function(btn)
---                 local select = btn.Value -- get all the values from v!
---                 TriggerServerEvent('Cards:sellItem', select.name, select.count, select.price)
---                 menu2:ClearItems(false)
+            select = function(btn)
+                local select = btn.Value -- get all the values from v!
+                TriggerServerEvent('Cards:sellItem', select.name, select.count, select.price)
+                menu2:ClearItems(false)
                 
---             end})
---         end
---     end)
--- end)
+            end})
+        end
+    end)
+end)
