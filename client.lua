@@ -191,7 +191,6 @@ end)
 
 RegisterNetEvent("Cards:client:UseBox")
 AddEventHandler("Cards:client:UseBox", function()
-    TaskPlayAnim(PlayerPedId(), "clothingshirt", "try_shirt_positive_d", 8.0, 1.0, -1, 49, 0, 0, 0, 0)
     print('Box is Opening')
     local PedCoords = GetEntityCoords(PlayerPedId())
     deckbox = CreateObject(GetHashKey('prop_deckbox_01'),PedCoords.x, PedCoords.y,PedCoords.z, true, true, true)
@@ -201,11 +200,10 @@ AddEventHandler("Cards:client:UseBox", function()
         FreezePlayer = true, 
         animation ={
             type = "anim",
-            dict = "mp_arresting", 
-            lib ="a_uncuff" 
+            dict = "clothingshirt", 
+            lib ="try_shirt_positive_d" 
         }, 
         onFinish = function()
-        --Code here
         local RLBagData = {
             outfitData = {
                 ["bag"]   = { item = 41, texture = 0},  -- Nek / Das
@@ -214,7 +212,6 @@ AddEventHandler("Cards:client:UseBox", function()
         --TriggerServerEvent("inventory:server:OpenInventory", "stash", "poke_"..QBCore.Functions.GetPlayerData().citizenid, {maxweight = 0.1, slots = 160}) -- Convert
         -- TriggerEvent("inventory:client:SetCurrentStash", "poke_"..QBCore.Functions.GetPlayerData().citizenid) -- Convert
         TriggerServerEvent("InteractSound_SV:PlayOnSource", "snap", 1.2)
-        TaskPlayAnim(ped, "clothingshirt", "exit", 8.0, 1.0, -1, 49, 0, 0, 0, 0)
         ESX.ShowNotifcation("Box has been opened successfully")
         Wait(10000)
         DeleteEntity(deckbox)
