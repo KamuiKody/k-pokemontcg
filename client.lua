@@ -1,3 +1,4 @@
+local QBCore = exports['qb-core']:GetCoreObject()
 local assert = assert
 local MenuV = assert(MenuV)
 
