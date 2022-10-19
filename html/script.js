@@ -7,7 +7,7 @@ let flippedcard4 = false;
 
 document.onkeyup = function (data) {
     if (data.which == 27) { // Escape
-        $.post('https://qb-pokemontcg/CloseNui')
+        $.post('https://k-pokemontcg/CloseNui')
         setTimeout(() => { $('.cards').css("display", "none"); }, 2000);
         $('.cards').animate({"top": "100%"}, 450)
 
@@ -57,11 +57,11 @@ $(document).on('click', '.card', function(e){
     var card = document.querySelector('.card');
     if (flippedcard1 === false) {
         card.classList.toggle('is-flipped');
-        $.post('https://qb-pokemontcg/randomCard');
+        $.post('https://k-pokemontcg/randomCard');
 
         setTimeout(() => { 
             document.getElementById("myImg").src = "img/" + pokemon + ".png";
-            $.post('https://qb-pokemontcg/Rewardpokemon', JSON.stringify({
+            $.post('https://k-pokemontcg/Rewardpokemon', JSON.stringify({
                 Pokemon: pokemon,
             }))
         }, 200);
@@ -75,11 +75,11 @@ $(document).on('click', '.card2', function(e){
     var card = document.querySelector('.card2');
     if (flippedcard2 === false) {
         card.classList.toggle('is-flipped');
-        $.post('https://qb-pokemontcg/randomCard');
+        $.post('https://k-pokemontcg/randomCard');
 
         setTimeout(() => {
             document.getElementById("myImg2").src = "img/" + pokemon + ".png";
-            $.post('https://qb-pokemontcg/Rewardpokemon', JSON.stringify({
+            $.post('https://k-pokemontcg/Rewardpokemon', JSON.stringify({
                 Pokemon: pokemon,
             }))
         }, 200);
@@ -94,11 +94,11 @@ $(document).on('click', '.card3', function(e){
     var card = document.querySelector('.card3');
     if (flippedcard3 === false) {
         card.classList.toggle('is-flipped');
-        $.post('https://qb-pokemontcg/randomCard');
+        $.post('https://k-pokemontcg/randomCard');
 
         setTimeout(() => {
             document.getElementById("myImg3").src = "img/" + pokemon + ".png";
-            $.post('https://qb-pokemontcg/Rewardpokemon', JSON.stringify({
+            $.post('https://k-pokemontcg/Rewardpokemon', JSON.stringify({
                 Pokemon: pokemon,
             }))
         }, 200);
@@ -113,11 +113,11 @@ $(document).on('click', '.card4', function(e){
     var card = document.querySelector('.card4');
     if (flippedcard4 === false) {
         card.classList.toggle('is-flipped');
-        $.post('https://qb-pokemontcg/randomCard');
+        $.post('https://k-pokemontcg/randomCard');
 
         setTimeout(() => {
             document.getElementById("myImg4").src = "img/" + pokemon + ".png"; 
-            $.post('https://qb-pokemontcg/Rewardpokemon', JSON.stringify({
+            $.post('https://k-pokemontcg/Rewardpokemon', JSON.stringify({
                 Pokemon: pokemon,
             }))
         }, 200);
