@@ -8,6 +8,7 @@ body { font-family: sans-serif; overflow: hidden;}
   height: 100px;
   top: 100%;
   left: 17%;
+  border-radius: 5px;
 }
 
 .scene {
@@ -56,10 +57,11 @@ body { font-family: sans-serif; overflow: hidden;}
   font-weight: bold;
   font-size: 40px;
   backface-visibility: hidden;
+  border-radius: 5px;
 }
 
 .card__face--front {
- 
+  border-radius: 5px;
 }
 
 .card__face--back {
@@ -77,6 +79,7 @@ body { font-family: sans-serif; overflow: hidden;}
   transform-style: preserve-3d;
   transform-origin: center right;
   transition: transform 1s;
+  border-radius: 5px;
 }
 
 #myImg,
@@ -85,4 +88,5 @@ body { font-family: sans-serif; overflow: hidden;}
 #myImg4 {
   width: 220px;
   height: 280px;
+  border-radius: 5px;
 }
