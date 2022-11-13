@@ -54,8 +54,16 @@ AddEventHandler('onResourceStart', function(resource)
                 local cardlist = {}
                 for i = 1,v.reward.amount do
                     local cardAmount = #cardlist + 1
-                    cardlist[cardAmount] = cardDistribution(item.name, cid)
-                    if v.reward.amount - Config.ShinyAmount <= i then
+                    cardlist[cardAmount].name = cardDistribution(item.name, cid)
+                    local grade = math.random(1,1000)
+                    for u,t in pairs(Config.Grades) do
+                        if v['chance'].min <= grade then
+                            if v['chance'].max >= grade then
+                                cardlist[cardAmount].grade = u
+                            end
+                        end
+                    end                    
+                    if v.reward.amount - Config.ShinyAmount < i then
                         local percentage = math.random(1,100)
                         if percentage <= Config.ShinyChance then
                             cardlist[cardAmount].shiny = true
@@ -67,7 +75,11 @@ AddEventHandler('onResourceStart', function(resource)
                     triggers[cid] = nil
                     TriggerClientEvent('k-pokemontcg:showUI', src, cardlist)
                     for _,v in pairs(cardlist) do
-                        Player.Functions.AddItem(v, 1)
+                        local info = {
+                            grade = v.grade,
+                            holo = v.shiny
+                        }
+                        Player.Functions.AddItem(v.name, 1, nil, info)
                     end
                     cards[cid] = nil
                 else
