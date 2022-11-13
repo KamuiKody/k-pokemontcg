@@ -1,6 +1,35 @@
 Config = {}
 
+Config.Tiers = {
+    [1] = {
+        min = 0,
+        max = 1
+    },
+    [2] = {
+        min = 2,
+        max = 5
+    },
+    [3] = {
+        min = 6,
+        max = 20
+    },
+    [4] = {
+        min = 21,
+        max = 50
+    },
+    [5] = {
+        min = 51,
+        max = 250
+    },
+    [6] = {
+        min = 251,
+        max = 1001
+    }
+}
+
 Config.Items = {
+
+    ---- Cards for boosterpack
     ["abra"] 						 = {["name"] = "abra", 			  			  	["label"] = "Abra", 					["weight"] = 0, 		["type"] = "item", 		["image"] = "abra.png", 				["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,	   ["combinable"] = nil,    ['card'] = true,    ['tier'] = ,    ['series'] = 'boosterpack',   ["description"] = "3/6 for Marsh Badge"},
     ["aerodactyl"] 					 = {["name"] = "aerodactyl", 			  	  	["label"] = "Aerodactyl", 				["weight"] = 0, 		["type"] = "item", 		["image"] = "aerodactyl.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,	   ["combinable"] = nil,    ['card'] = true,    ['tier'] = ,    ['series'] = 'boosterpack',   ["description"] = "Ultra Rare"},
     ["alakazam"] 					 = {["name"] = "alakazam", 					 	["label"] = "Alakazam", 				["weight"] = 0, 		["type"] = "item", 		["image"] = "alakazam.png", 			["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,	   ["combinable"] = nil,    ['card'] = true,    ['tier'] = ,    ['series'] = 'boosterpack',   ["description"] = "1/6 for Marsh Badge"},
@@ -177,4 +206,7 @@ Config.Items = {
     ["rainbowvmaxcharizard"] 		 = {["name"] = "rainbowvmaxcharizard", 			["label"] = "Rainbow Charizard", 		["weight"] = 0, 		["type"] = "item", 		["image"] = "rainbowvmaxcharizard.png", ["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,       ["combinable"] = nil,    ['card'] = true,    ['tier'] = ,    ['series'] = 'boosterpack',   ["description"] = "Rainbow Card"},
     ["rainbowvmaxpikachu"] 			 = {["name"] = "rainbowvmaxpikachu", 			["label"] = "Rainbow Pikachu", 			["weight"] = 0, 		["type"] = "item", 		["image"] = "rainbowvmaxpikachu.png", 	["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,       ["combinable"] = nil,    ['card'] = true,    ['tier'] = ,    ['series'] = 'boosterpack',   ["description"] = "Rainbow Card"},
     ["snorlaxvmaxrainbow"] 			 = {["name"] = "snorlaxvmaxrainbow", 			["label"] = "Rainbox Snorlax", 			["weight"] = 0, 		["type"] = "item", 		["image"] = "snorlaxvmaxrainbow.png", 	["unique"] = false, 	["useable"] = false, 	["shouldClose"] = false,       ["combinable"] = nil,    ['card'] = true,    ['tier'] = ,    ['series'] = 'boosterpack',   ["description"] = "Rainbow Card"},
+
+    ----BoosterPack for first series
+    ["boosterpack"] 				 = {["name"] = "boosterpack", 			  	  	["label"] = "Boosterpack", 				["weight"] = 0, 		["type"] = "item", 		["image"] = "boosterPack.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,        ["combinable"] = nil,   ['pack'] = true, ["description"] = "Pack of Cards"},
 }

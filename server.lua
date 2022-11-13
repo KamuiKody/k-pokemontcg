@@ -3,18 +3,18 @@ local triggers = {}
 
 local function cardDistribution(item, cid)
     local rand = math.random(1,1000)
-    local teir = nil
-    for k,v in pairs(Config.Teirs) do
+    local tier = nil
+    for k,v in pairs(Config.Tiers) do
         if v.min <= rand then
             if v.max >= rand then
-                teir = k
+                tier = k
             end
         end
     end
     for i = 1,#Config.Items do
         if Config.Items[i].card then
             if Config.Items[i].series == item then
-                if Config.Items[i].teir == teir then
+                if Config.Items[i].tier == tier then
                     cards[cid][#cards[cid] + 1] = Config.Items[i].name
                 end
             end
