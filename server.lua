@@ -53,7 +53,14 @@ AddEventHandler('onResourceStart', function(resource)
                 TriggerClientEvent('k-pokemontcg:progress', src, 'pack')
                 local cardlist = {}
                 for i = 1,v.reward.amount do
-                   cardlist[#cardlist + 1] = cardDistribution(item.name, cid)
+                    local cardAmount = #cardlist + 1
+                    cardlist[cardAmount] = cardDistribution(item.name, cid)
+                    if v.reward.amount - Config.ShinyAmount <= i then
+                        local percentage = math.random(1,100)
+                        if percentage <= Config.ShinyChance then
+                            cardlist[cardAmount].shiny = true
+                        end
+                    end                    
                 end
                 Wait(Config.Progress['pack'].time + 500)
                 if triggers[cid] then
@@ -67,6 +74,8 @@ AddEventHandler('onResourceStart', function(resource)
                     cards[cid] = nil
                 end
             elseif v.box then
+                if cards[cid] then return end
+                cards[cid] = 'box'
                 if not Player.Functions.RemoveItem(item.name, 1) then return end
                 TriggerClientEvent("inventory:client:ItemBox", src, QBCore.Shared.Items[item.name], "used")
                 triggers[cid] = nil
