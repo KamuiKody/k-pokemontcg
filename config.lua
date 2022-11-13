@@ -1,5 +1,81 @@
 Config = {}
 
+Config.ShinyChance = 75
+Config.ShinyAmount = 1
+
+Config.Grades = {
+    [1] = {
+        ['chance'] = {
+            min = 1,
+            max = 1
+        },
+        ['multi'] = 0.1
+    },
+    [2] = {
+        ['chance'] = {
+            min = 2,
+            max = 5
+        },
+        ['multi'] = 0.2
+    },
+    [3] = {
+        ['chance'] = {
+            min = 6,
+            max = 20
+        },
+        ['multi'] = 0.5
+    },
+    [4] = {
+        ['chance'] = {
+            min = 21,
+            max = 100
+        },
+        ['multi'] = 0.9
+    },
+    [5] = {
+        ['chance'] = {
+            min = 101,
+            max = 550
+        },
+        ['multi'] = 1.0
+    },
+    [6] = {
+        ['chance'] = {
+            min = 551,
+            max = 699
+        },
+        ['multi'] = 1.1
+    },
+    [7] = {
+        ['chance'] = {
+            min = 700,
+            max = 847
+        },
+        ['multi'] = 1.2
+    },
+    [8] = {
+        ['chance'] = {
+            min = 848,
+            max = 948
+        },
+        ['multi'] = 1.5
+    },
+    [9] = {
+        ['chance'] = {
+            min = 949,
+            max = 999
+        },
+        ['multi'] = 2.0
+    },
+    [10] = {
+        ['chance'] = {
+            min = 999,
+            max = 1001
+        },
+        ['multi'] = 3.0
+    },
+}
+
 Config.Tiers = {
     [1] = {
         min = 0,
