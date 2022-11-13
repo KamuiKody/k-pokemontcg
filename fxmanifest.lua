@@ -8,7 +8,6 @@ game "gta5"
 
 
 client_scripts {
-    '@menuv/menuv.lua',
     'config.lua',
     'client.lua'
 }
@@ -23,10 +22,6 @@ files {
  'html/img/*.png',
  'html/script.js',
  'html/style.css',
-}
-
-dependencies {
-    'menuv'
 }
 
 data_file 'DLC_ITYP_REQUEST' 'stream/booster_props.ytyp'

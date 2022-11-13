@@ -1,92 +1,40 @@
-body { font-family: sans-serif; overflow: hidden;}
-
-
-.cards {
-  display: none;
-  position: relative;
-  width: 20%;
-  height: 100px;
-  top: 100%;
-  left: 17%;
-  border-radius: 5px;
+.container {
+    width: 200px;
+    height: 260px;
+    position: relative;
+    margin: 0 auto;
+    perspective: 800px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.scene {
-  position: absolute;
-  width: 220px;
-  height: 280px;
-  margin: 0px 400px;
-  perspective: 600px;
+.card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    -webkit-transform-origin: 50% 50%;
 }
 
-.scene3 {
-  position: relative;
-  width: 220px;
-  height: 280px;
-  margin: -320px 640px;
-  perspective: 600px;
+.card div {
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 260px;
+    color: black;
+    text-align: center;
+    position: absolute;
+    backface-visibility: hidden;
 }
 
-.scene4 {
-  position: absolute;
-  width: 220px;
-  height: 280px;
-  margin: 40px 880px;
-  perspective: 600px;
+.card .back {
+    border: 1px solid grey;
+    transform: rotateY( 180deg );
 }
 
-.scene2 {
-  position: relative;
-  width: 220px;
-  height: 280px;
-  margin: 40px 160px;
-  perspective: 600px;
-}
-
-.is-flipped {
-  transform: translateX(-100%) rotateY(-180deg);
-}
-
-.card__face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  line-height: 260px;
-  color: white;
-  text-align: center;
-  font-weight: bold;
-  font-size: 40px;
-  backface-visibility: hidden;
-  border-radius: 5px;
-}
-
-.card__face--front {
-  border-radius: 5px;
-}
-
-.card__face--back {
-  transform: rotateY(180deg);
-}
-
-.card,
-.card2,
-.card3,
-.card4 {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  transform-style: preserve-3d;
-  transform-origin: center right;
-  transition: transform 1s;
-  border-radius: 5px;
-}
-
-#myImg,
-#myImg2,
-#myImg3,
-#myImg4 {
-  width: 220px;
-  height: 280px;
-  border-radius: 5px;
+.card.flipped {
+    transform: rotateY( 180deg );
 }
