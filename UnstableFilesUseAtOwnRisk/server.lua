@@ -1,6 +1,7 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 local shopitems = {}
 local slots = 0
+local itemTypes = {'Cards', 'Badge'}
 
 local function GiveCardBox(id)
     local Player = QBCore.Functions.GetPlayer(src)
@@ -210,25 +211,13 @@ QBCore.Functions.CreateUseableItem("pokebox", function(source, item)
     TriggerClientEvent('pokemon:client:useitem', src, newitem.name)
 end)
 
-for i = 1,#Config.Cards,1 do
-    for u = 1,#Config.Cards[i],1 do
-        for k,v in pairs(Config.Cards[i][u]) do
-            QBCore.Functions.CreateUseableItem(k, function(source, item)
-                local src = source
-                TriggerClientEvent('pokemon:client:viewcard', src, item.name)
-            end)
+for x = 1,2 do
+    for i = 1,#Config[itemTypes[i]],1 do
+        for k,v in pairs(Config.Badge[i]) do
+	    QBCore.Functions.CreateUseableItem(k, function(source, item)
+	        local src = source
+	        TriggerClientEvent('pokemon:client:viewcard', src, item.name)
+	    end)
         end
     end
 end
-
-for i = 1,#Config.Badge,1 do
-    for k,v in pairs(Config.Badge[i]) do
-        QBCore.Functions.CreateUseableItem(k, function(source, item)
-            local src = source
-            TriggerClientEvent('pokemon:client:viewcard', src, item.name)
-        end)
-    end
-end
-
-
-
