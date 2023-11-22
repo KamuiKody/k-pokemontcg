@@ -1,3 +1,5 @@
+THIS CODE IS DEPRICATED ANY ISSUES SHOULD BE SOLVED BY A DEVELOPER AND FIXES SUBMITTED AS A PULL REQUEST. Check out k-boosterpacks if u want to make ur own card resource...
+
 ```
 # For shared.lua #
 ```lua
